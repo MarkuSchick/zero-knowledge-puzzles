@@ -13,7 +13,19 @@ template QuadraticEquation() {
     signal input res;   // Expected result of the equation
     signal output out;  // If res is correct , then return 1 , else 0 . 
 
-    // your code here
+    signal get;
+
+    var v10 = x * x;
+    var v1 = a * v10;
+    var v2 = b * x;
+
+    get  <-- v1 + v2 + c;
+
+    component equal = IsEqual();
+    equal.in[0] <== get;
+    equal.in[1] <== res;
+
+    out <== equal.out;
 }
 
 component main  = QuadraticEquation();
